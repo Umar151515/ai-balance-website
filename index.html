@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AI Balance — умный финансовый помощник</title>
+    <meta name="description" content="AI Balance: личный финансовый трекер с искусственным интеллектом. Анализируйте расходы, получайте инсайты и управляйте бюджетом легко.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFF;
+            color: #1A1F36;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* цветовая схема: акцент #2EC4B6 (бирюзовый), доп. оттенки */
+        :root {
+            --primary: #2EC4B6;
+            --primary-dark: #239e92;
+            --primary-light: #e0f7f4;
+            --secondary: #3A86FF;
+            --dark: #1A1F36;
+            --gray: #64748B;
+            --light-bg: #F8FAFF;
+            --card-bg: #FFFFFF;
+            --border: #E9EEF5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header & navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: none;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--dark);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+
+        /* кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(46, 196, 182, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(46, 196, 182, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: rgba(46, 196, 182, 0.1);
+            color: var(--primary);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(46, 196, 182, 0.2);
+        }
+
+        /* hero секция */
+        .hero {
+            padding: 60px 0 80px;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 90%;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .mockup-phone {
+            background: linear-gradient(145deg, #FFFFFF, #F0F4FC);
+            border-radius: 48px;
+            padding: 20px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+
+        .mockup-phone i {
+            font-size: 6rem;
+            color: var(--primary);
+        }
+
+        /* features grid */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-light);
+            box-shadow: 0 20px 35px -12px rgba(46,196,182,0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* кнопки загрузки секция */
+        .download-section {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 48px;
+            margin: 40px 0;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .download-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .download-section p {
+            color: #CBD5E1;
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+
+        .platform-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .platform-btn {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 14px 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .platform-btn i {
+            font-size: 1.4rem;
+        }
+
+        .platform-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* адаптация */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+                padding: 24px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .download-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .hero-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .platform-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .platform-btn {
+                justify-content: center;
+            }
+            .download-section {
+                padding: 40px 24px;
+            }
+            .section {
+                padding: 50px 0;
+            }
+        }
+
+        /* анимация появления */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <div class="navbar">
+        <div class="logo">AI <span>Balance</span></div>
+    </div>
+</header>
+
+<main>
+    <section class="hero container">
+        <div class="hero-grid">
+            <div class="hero-content fade-up">
+                <span class="hero-badge"><i class="fas fa-robot"></i> AI-помощник</span>
+                <h1>Финансы, которые <span style="color: var(--primary);">говорят с тобой</span></h1>
+                <p>AI Balance — умный трекер с искусственным интеллектом. Анализируй траты, веди бюджет и получай персонализированные советы.</p>
+                <div class="download-buttons">
+                    <a href="#" class="btn btn-primary"><i class="fab fa-android"></i> Android (APK)</a>
+                    <a href="#" class="btn btn-outline"><i class="fab fa-windows"></i> Установщик для ПК</a>
+                    <a href="#" class="btn btn-ghost"><i class="fas fa-globe"></i> Веб-версия</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section container">
+        <h2 class="section-title fade-up">Создан, чтобы упрощать деньги</h2>
+        <p class="section-sub fade-up">Больше никаких скучных таблиц — ИИ, инсайты и полный контроль</p>
+        <div class="features-grid">
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-comment-dots"></i></div>
+                <h3>AI-ассистент 24/7</h3>
+                <p>Общайтесь с чат-ботом, добавляйте доходы/расходы голосом или текстом, отправляйте фото чеков — ИИ сам разберётся.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3>Детальная статистика</h3>
+                <p>Графики по дням, неделям, месяцам. Наглядные отчёты по категориям и динамика баланса.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Достижения и геймификация</h3>
+                <p>Зарабатывайте награды за первые операции, регулярный учёт и финансовые рекорды. Это мотивирует!</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Финансовые инсайты</h3>
+                <p>«Запас по тратам», персональный скоринг и совет дня на основе ваших реальных данных.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-database"></i></div>
+                <h3>Резервное копирование</h3>
+                <p>Экспорт и импорт всех данных в JSON. Безопасно переносите историю между устройствами.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon"><i class="fas fa-moon"></i></div>
+                <h3>Тёмная тема</h3>
+                <p>Полная кастомизация: светлая, тёмная, системная тема и акцентный цвет на ваш вкус.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer container">
+    <p>© 2025 AI Balance — умный финансовый трекер с ИИ. Сделано с ❤️ для контроля бюджета.</p>
+    <p style="margin-top: 12px; font-size: 0.8rem;">
+        <i class="fab fa-github"></i> <a href="#" style="color: var(--gray); text-decoration: none;">GitHub</a> &nbsp;|&nbsp;
+        <i class="fas fa-envelope"></i> support@aibalance.com
+    </p>
+</footer>
+
+<script>
+    // мобильное меню
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    fadeElements.forEach(el => observer.observe(el));
+    window.dispatchEvent(new Event('scroll'));
+</script>
+
+</body>
+</html>
