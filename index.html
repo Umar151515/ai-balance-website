@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>AI Balance — умный финансовый помощник</title>
     <meta name="description" content="AI Balance: личный финансовый трекер с искусственным интеллектом. Анализируйте расходы, получайте инсайты и управляйте бюджетом легко.">
-    <!-- Google Fonts -->
+    
+    <link rel="icon" type="image/png" href="star.png">
+    <link rel="apple-touch-icon" href="star.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -24,7 +27,6 @@
             scroll-behavior: smooth;
         }
 
-        /* цветовая схема: акцент #2EC4B6 (бирюзовый), доп. оттенки */
         :root {
             --primary: #2EC4B6;
             --primary-dark: #239e92;
@@ -62,9 +64,10 @@
             letter-spacing: -0.5px;
         }
 
-        .logo span {
+        .logo i {
             background: none;
-            color: var(--dark);
+            color: var(--primary);
+            margin-right: 4px;
         }
 
         .nav-links {
@@ -106,6 +109,7 @@
             transition: all 0.25s ease;
             border: none;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -131,16 +135,19 @@
             transform: translateY(-2px);
         }
 
-        .btn-ghost {
-            background: rgba(46, 196, 182, 0.1);
-            color: var(--primary);
+        .btn-web {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
         }
 
-        .btn-ghost:hover {
-            background: rgba(46, 196, 182, 0.2);
+        .btn-web:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* hero секция */
         .hero {
             padding: 60px 0 80px;
         }
@@ -208,7 +215,6 @@
             color: var(--primary);
         }
 
-        /* features grid */
         .section {
             padding: 80px 0;
         }
@@ -265,7 +271,6 @@
             color: var(--gray);
         }
 
-        /* кнопки загрузки секция */
         .download-section {
             background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
             border-radius: 48px;
@@ -320,6 +325,26 @@
             transform: scale(1.02);
         }
 
+        .app-icon-showcase {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .app-icon-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, var(--primary), var(--secondary));
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 30px -10px rgba(46,196,182,0.4);
+        }
+        .app-icon-circle i {
+            font-size: 42px;
+            color: white;
+        }
+
         /* footer */
         .footer {
             border-top: 1px solid var(--border);
@@ -328,7 +353,6 @@
             color: var(--gray);
         }
 
-        /* адаптация */
         @media (max-width: 768px) {
             .container {
                 padding: 0 20px;
@@ -382,7 +406,6 @@
             }
         }
 
-        /* анимация появления */
         .fade-up {
             opacity: 0;
             transform: translateY(20px);
@@ -398,7 +421,9 @@
 
 <header class="container">
     <div class="navbar">
-        <div class="logo">AI <span>Balance</span></div>
+        <div class="logo">
+            <i class="fas fa-robot" style="background: none; color: var(--primary);"></i> AI <span style="color: var(--dark);">Balance</span>
+        </div>
     </div>
 </header>
 
@@ -406,12 +431,12 @@
     <section class="hero container">
         <div class="hero-grid">
             <div class="hero-content fade-up">
-                <span class="hero-badge"><i class="fas fa-robot"></i> AI-помощник</span>
                 <h1>Финансы, которые <span style="color: var(--primary);">говорят с тобой</span></h1>
                 <p>AI Balance — умный трекер с искусственным интеллектом. Анализируй траты, веди бюджет и получай персонализированные советы.</p>
-                <div class="download-buttons">
-                    <a href="https://github.com/Umar151515/ai-balance-website/releases/latest/download/AIBalance.apk" class="btn btn-primary"><i class="fab fa-android"></i> Android (APK)</a>
-                    <a href="https://github.com/Umar151515/ai-balance-website/releases/latest/download/AIBalanceSetup.exe" class="btn btn-outline"><i class="fab fa-windows"></i> Установщик для ПК</a>
+            </div>
+            <div class="hero-image fade-up">
+                <div class="mockup-phone">
+                    <img src="icon.png" alt="AI Balance иконка" style="width: 120px; height: 120px; border-radius: 24px;">
                 </div>
             </div>
         </div>
@@ -453,42 +478,73 @@
             </div>
         </div>
     </section>
+
+    <section id="download" class="container">
+        <div class="download-section fade-up">
+            <div class="app-icon-showcase">
+                <div class="app-icon-circle" style="width: 70px; height: 70px; border-radius: 20px;">
+                    <i class="fas fa-robot"></i>
+                </div>
+            </div>
+            <h2>Готовы навести порядок в финансах?</h2>
+            <p>Выберите удобную платформу — приложение, десктоп или веб.</p>
+            <div class="platform-buttons">
+                <a href="https://github.com/Umar151515/ai-balance-website/releases/latest/download/AIBalance.apk" class="platform-btn"><i class="fab fa-android"></i> Скачать APK</a>
+                <a href="https://github.com/Umar151515/ai-balance-website/releases/latest/download/AIBalanceSetup.exe" class="platform-btn"><i class="fab fa-windows"></i> Установщик Windows</a>
+                <a href="https://umar151515.github.io/ai-balance-web/" class="platform-btn btn-web"><i class="fas fa-cloud"></i> Открыть Web App</a>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer class="footer container">
-    <p>© 2025 AI Balance — умный финансовый трекер с ИИ. Сделано с ❤️ для контроля бюджета.</p>
+    <p>2026 AI Balance — умный финансовый трекер с ИИ. Сделано с ❤️ для контроля бюджета.</p>
     <p style="margin-top: 12px; font-size: 0.8rem;">
-        <i class="fab fa-github"></i> <a href="#" style="color: var(--gray); text-decoration: none;">GitHub</a> &nbsp;|&nbsp;
-        <i class="fas fa-envelope"></i> support@aibalance.com
+        <i class="fab fa-github"></i> <a href="https://github.com/Umar151515" style="color: var(--gray); text-decoration: none;">GitHub</a>
     </p>
 </footer>
 
 <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
+    (function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
-    });
 
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            }
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+
+        fadeElements.forEach(el => observer.observe(el));
+        window.dispatchEvent(new Event('scroll'));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
-    fadeElements.forEach(el => observer.observe(el));
-    window.dispatchEvent(new Event('scroll'));
+    })();
 </script>
 
 </body>
